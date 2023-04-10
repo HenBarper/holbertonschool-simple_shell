@@ -1,3 +1,5 @@
+#include "shell.h"
+
 #define MAX_ARGS 100
 
 char **split_string(char *str, int *count);
@@ -79,7 +81,7 @@ char **split_string(char *str, int *count)
 			cmd = malloc(strlen("/bin/") + strlen(token) + 1);
 			strcpy(cmd, "/bin/");
 			strcat(cmd, token);
-			words[i] = cmd
+			words[i] = cmd;
 		}
 		else
 		{
