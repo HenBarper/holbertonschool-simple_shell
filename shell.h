@@ -9,7 +9,7 @@
 #include <string.h>
 
 /* Prototypes */
-char** split_string(char *str, int *count);
+char **split_string(char *str, int *count);
 int main(void);
 
 
