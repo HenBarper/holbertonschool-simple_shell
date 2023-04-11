@@ -11,6 +11,6 @@
 /* Prototypes */
 char **split_string(char *str, int *count);
 int main(void);
-
+int exit(int) __attribute__((noreturn));
 
 #endif
