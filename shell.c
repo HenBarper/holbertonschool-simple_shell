@@ -17,6 +17,7 @@ int main(void)
 	int count;
 	int CoP = 666;
 	int i = 0;
+	//char **cmd_chk = NULL;
 
 	while (1)
 	{
@@ -25,8 +26,8 @@ int main(void)
 		getline(&command, &size, stdin);
 		printf("Command received: %s", command);
 		words = split_string(command, &count);
-
-		if (strcmp(command, "exit") == 0)
+		
+		if (strcmp(words[0], "/bin/exit") == 0)
 			break;
 
 		for (; i < count ; i++)
@@ -34,7 +35,17 @@ int main(void)
 			printf("token %d: %s\n", i, words[i]);
 		}
 
-		CoP = fork();
+		/*
+		cmd_chk[0] = "which";
+		cmd_chk[1] = command;
+		cmd_chk[2] = NULL;
+		if (execve(cmd_chk[0], cmd_chk, NULL) == -1)
+		{
+			printf("Command error!!!\n");
+		}
+		else*/
+			CoP = fork();
+
 		printf("Forked by %d\n", CoP);
 
 		if (CoP == 0)
