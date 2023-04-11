@@ -25,7 +25,7 @@ int main(void)
 		getline(&command, &size, stdin);
 		printf("Command received: %s", command);
 		words = split_string(command, &count);
-		
+
 		if (strcmp(command, "exit") == 0)
 			break;
 
@@ -33,7 +33,7 @@ int main(void)
 		{
 			printf("token %d: %s\n", i, words[i]);
 		}
-		
+
 		CoP = fork();
 		printf("Forked by %d\n", CoP);
 
