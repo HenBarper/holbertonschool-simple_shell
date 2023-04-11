@@ -17,7 +17,6 @@ int main(void)
 	int count;
 	int CoP = 666;
 	int i = 0;
-	//char **cmd_chk = NULL;
 
 	while (1)
 	{
@@ -35,16 +34,13 @@ int main(void)
 			printf("token %d: %s\n", i, words[i]);
 		}
 
-		/*
-		cmd_chk[0] = "which";
-		cmd_chk[1] = command;
-		cmd_chk[2] = NULL;
-		if (execve(cmd_chk[0], cmd_chk, NULL) == -1)
-		{
-			printf("Command error!!!\n");
-		}
-		else*/
+		if (access(words[0], X_OK) == 0)
 			CoP = fork();
+		else
+		{
+			printf("Command doesn't exist\n");
+			break;
+		}
 
 		printf("Forked by %d\n", CoP);
 
