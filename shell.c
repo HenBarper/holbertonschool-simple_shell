@@ -27,7 +27,7 @@ int main(void)
 		words = split_string(command, &count);
 		
 		if (strcmp(words[0], "/bin/exit") == 0)
-			break;
+			exit(EXIT_SUCCESS);
 
 		for (; i < count ; i++)
 		{
@@ -64,7 +64,8 @@ int main(void)
 	}
 
 	printf("End of prog: %d\n", CoP);
-
+	free(words);
+	free(command);
 	return (0);
 }
 
