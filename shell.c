@@ -35,33 +35,35 @@ int main(void)
 		}
 
 		if (access(words[0], X_OK) == 0)
+		{
 			CoP = fork();
-		else
-		{
-			perror("Errorvvvvvvvvvvvv");
-		}
-
-		printf("Forked by %d\n", CoP);
-
-		if (CoP == 0)
-		{
-			printf("Child executing.\n");
-			if (execve(words[0], words, NULL) == -1)
+			printf("Forked by %d\n", CoP);
+			if (CoP == 0)
 			{
-				perror("Error");
-				return (-1);
+				printf("Child executing.\n");
+				if (execve(words[0], words, NULL) == -1)
+				{
+					perror("Execve Error");
+					return (-1);
+				}
+				return (0);
 			}
-			return (0);
+			else
+			{
+				printf("Parent waiting.\n");
+				wait(NULL);
+				printf("Parent awakend.\n");
+			}
 		}
 		else
 		{
-			printf("Parent waiting.\n");
-			wait(NULL);
-			printf("Parent awakend.\n");
+			perror("Command Error");
 		}
+
+	
 		printf("Just before end of while loop: %d\n", CoP);
 	}
-
+	
 	printf("End of prog: %d\n", CoP);
 	free(words);
 	free(command);
