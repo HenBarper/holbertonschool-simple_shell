@@ -34,7 +34,7 @@ int main(void)
 		{
 			printf("token %d: %s\n", i, words[i]);
 		}
-		
+
 		/*
 		cmd_chk[0] = "which";
 		cmd_chk[1] = command;
