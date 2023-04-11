@@ -38,8 +38,7 @@ int main(void)
 			CoP = fork();
 		else
 		{
-			printf("Command doesn't exist\n");
-			break;
+			perror("Errorvvvvvvvvvvvv");
 		}
 
 		printf("Forked by %d\n", CoP);
