@@ -24,7 +24,11 @@ int main(void)
 		words = split_string(command, &count);
 
 		if (strcmp(words[0], "/bin/exit") == 0)
+		{
+			free(words);
+			free(command);
 			exit(EXIT_SUCCESS);
+		}
 
 		if (access(words[0], X_OK) == 0)
 		{
