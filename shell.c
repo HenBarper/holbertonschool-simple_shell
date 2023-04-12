@@ -23,9 +23,13 @@ int main(void)
 		if (getline(&command, &size, stdin) == -1)
 		{
 			printf("\n");
-			break;
+			exit(EXIT_SUCCESS);
 		}
-		words = split_string(command, &count);
+
+		if (command[0] == '\n')
+			continue;
+		else
+			words = split_string(command, &count);
 
 		if (strcmp(words[0], "/bin/exit") == 0)
 		{
