@@ -24,6 +24,7 @@ int main(void)
 			write(STDOUT_FILENO, "$ ", 2);
 		if (getline(&command, &size, stdin) == -1)
 		{
+			free(command);
 			exit(EXIT_SUCCESS);
 		}
 
@@ -32,15 +33,10 @@ int main(void)
 		else
 			words = split_string(command, &count);
 
-		if (strcmp(words[0], "/bin/exit") == 0)
+		if (_strcmp(words[0], "/bin/exit") == 0)
 		{
-			while (words[i])
-			{
-				free(words[i]);
-				i++;
-			}
-			free(words);
 			free(command);
+			free(words);
 			exit(EXIT_SUCCESS);
 		}
 
@@ -52,22 +48,21 @@ int main(void)
 				if (execve(words[0], words, NULL) == -1)
 				{
 					perror("Execve Error");
+					free(command);
+					free(words);
 					return (-1);
 				}
+				free(command);
+				free(words);
 				return (0);
 			}
 			else
-			{
 				wait(NULL);
-			}
 		}
 		else
-		{
 			perror("Command Error");
-		}
+		free(words);
 	}
-	free(words);
-	free(command);
 	return (0);
 }
 
@@ -95,7 +90,6 @@ char **split_string(char *str, int *count)
 			if (cmd == NULL)
 			{
 				perror("malloc error");
-				free(cmd);
 				exit(EXIT_FAILURE);
 			}
 			_strcpy(cmd, "/bin/");
@@ -117,11 +111,12 @@ char **split_string(char *str, int *count)
 		perror("malloc error");
 		exit(EXIT_FAILURE);
 	}
+
 	for (j = 0 ; j < i ; j++)
 	{
 		result[j] = words[j];
 	}
 	result[i] = NULL;
-
+	free(cmd);
 	return (result);
 }
