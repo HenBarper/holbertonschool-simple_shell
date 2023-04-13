@@ -121,6 +121,7 @@ char **split_string(char *str, int *count)
 	{
 		result[j] = words[j];
 	}
+	free(cmd);
 	free(token);
 	result[i] = NULL;
 	return (result);
