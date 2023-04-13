@@ -116,6 +116,6 @@ char **split_string(char *str, int *count)
 		result[j] = words[j];
 	}
 	result[i] = NULL;
-	free(cmd);
+	/*free(cmd);*/
 	return (result);
 }
