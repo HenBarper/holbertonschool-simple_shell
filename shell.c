@@ -117,8 +117,5 @@ char **split_string(char *str, int *count)
 	}
 	result[i] = NULL;
 
-	if (cmd != NULL && i == 0 && token[0] != '/')
-		free(cmd);
-
 	return (result);
 }
