@@ -3,7 +3,7 @@
 #define MAX_ARGS 100
 
 char **split_string(char *str, int *count);
-char *cmd;
+
 /**
  * main - entry point
  *
@@ -115,5 +115,9 @@ char **split_string(char *str, int *count)
 		result[j] = words2[j];
 	}
 	result[i] = NULL;
+<<<<<<< HEAD
+=======
+	/*free(cmd);*/
+>>>>>>> 0c475387d4de163aebf3730353d04f15db8979c4
 	return (result);
 }
