@@ -16,6 +16,7 @@ int main(void)
 	char **words = NULL;
 	int count;
 	int CoP = 777;
+	int i = 0;
 
 	while (1)
 	{
