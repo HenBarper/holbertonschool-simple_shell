@@ -86,9 +86,15 @@ char **split_string(char *str, int *count)
 		if (i == 0 && token[0] != '/')
 		{
 			cmd = malloc(strlen("/bin/") + strlen(token) + 1);
+			if (cmd == NULL)
+			{
+				perror("malloc error");
+				exit(EXIT_FAILURE);
+			}
 			strcpy(cmd, "/bin/");
 			strcat(cmd, token);
 			words[i] = cmd;
+			/*free(cmd);*/
 		}
 		else
 		{
@@ -100,11 +106,19 @@ char **split_string(char *str, int *count)
 	*count = i;
 
 	result = malloc((i + 1) * sizeof(char *));
+	if (result == NULL)
+	{
+		perror("malloc error");
+		exit(EXIT_FAILURE);
+	}
 	for (j = 0 ; j < i ; j++)
 	{
 		result[j] = words[j];
 	}
 	result[i] = NULL;
+
+	if (cmd != NULL && i == 0 && token[0] != '/')
+		free(cmd);
 
 	return (result);
 }
