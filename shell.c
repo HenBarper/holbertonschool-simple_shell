@@ -16,6 +16,7 @@ int main(void)
 	char **words = NULL;
 	int count;
 	int CoP = 777;
+	int i = 0;
 
 	while (1)
 	{
@@ -33,6 +34,11 @@ int main(void)
 
 		if (strcmp(words[0], "/bin/exit") == 0)
 		{
+			while (words[i])
+			{
+				free(words[i]);
+				i++;
+			}
 			free(words);
 			free(command);
 			exit(EXIT_SUCCESS);
