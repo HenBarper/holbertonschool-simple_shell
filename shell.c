@@ -16,6 +16,7 @@ int main(void)
 	char **words = NULL;
 	int count;
 	int CoP = 777;
+	int i = 0;
 
 	while (1)
 	{
@@ -33,6 +34,12 @@ int main(void)
 
 		if (strcmp(words[0], "/bin/exit") == 0)
 		{
+			while (words[i])
+			{
+				free(words[i]);
+				i++;
+			}
+
 			free(words);
 			free(command);
 			exit(EXIT_SUCCESS);
@@ -60,8 +67,6 @@ int main(void)
 			perror("Command Error");
 		}
 	}
-	free(words);
-	free(command);
 	return (0);
 }
 
@@ -111,11 +116,12 @@ char **split_string(char *str, int *count)
 		perror("malloc error");
 		exit(EXIT_FAILURE);
 	}
+
 	for (j = 0 ; j < i ; j++)
 	{
 		result[j] = words[j];
 	}
+	free(token);
 	result[i] = NULL;
-
 	return (result);
 }
