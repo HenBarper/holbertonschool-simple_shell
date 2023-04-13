@@ -85,15 +85,15 @@ char **split_string(char *str, int *count)
 	{
 		if (i == 0 && token[0] != '/')
 		{
-			cmd = malloc(strlen("/bin/") + strlen(token) + 1);
+			cmd = malloc(_strlen("/bin/") + _strlen(token) + 1);
 			if (cmd == NULL)
 			{
 				perror("malloc error");
 				free(cmd);
 				exit(EXIT_FAILURE);
 			}
-			strcpy(cmd, "/bin/");
-			strcat(cmd, token);
+			_strcpy(cmd, "/bin/");
+			_strcat(cmd, token);
 			words[i] = cmd;
 		}
 		else
