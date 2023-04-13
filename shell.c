@@ -19,10 +19,10 @@ int main(void)
 
 	while (1)
 	{
-		printf("$ ");
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "$ ", 2);
 		if (getline(&command, &size, stdin) == -1)
 		{
-			printf("\n");
 			exit(EXIT_SUCCESS);
 		}
 
@@ -89,12 +89,12 @@ char **split_string(char *str, int *count)
 			if (cmd == NULL)
 			{
 				perror("malloc error");
+				free(cmd);
 				exit(EXIT_FAILURE);
 			}
 			strcpy(cmd, "/bin/");
 			strcat(cmd, token);
 			words[i] = cmd;
-			/*free(cmd);*/
 		}
 		else
 		{
