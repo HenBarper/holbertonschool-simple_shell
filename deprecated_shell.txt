@@ -39,7 +39,7 @@ int main(void)
 			exit(EXIT_SUCCESS);
 		}
 
-	
+
 		if (access(words[0], X_OK) == 0)
 		{
 			CoP = fork();
