@@ -1,9 +1,5 @@
 #include "main.h"
 
-/*#define MAX_ARGS 100*/
-
-/*char **split_string(char *str);*/
-/*char **split_path(char *thePath);*/
 void tokenize_string(char *str, char *delims, char **tokens);
 int create_child(char *call_path, char **str_arr);
 int check_path(char **path_array, char **token_array);
@@ -40,7 +36,6 @@ int main(void)
 			continue;
 		if (_strcmp(tokarr[0], "exit") == 0)
 		{
-			/*fflush(stdin);*/
 			free(input);
 			exit(EXIT_SUCCESS);
 		}
@@ -64,7 +59,6 @@ int main(void)
  */
 void tokenize_string(char *str, char *delims, char **tokens)
 {
-	/*char *saveptr;*/
 	char *path_token = strtok(str, delims);
 	int i = 0;
 
@@ -136,88 +130,3 @@ int create_child(char *call_path, char **str_arr)
 	(void) sig;
 	return (status);
 }
-
-
-/*char **split_string(char *str)
-{
-	char *token;
-	char *words[MAX_ARGS];
-	char **result;
-	int i = 0;
-	int j;
-	char *cmd = NULL;
-
-	token = strtok(str, " \n");
-	while (token != NULL && i < MAX_ARGS)
-	{
-		if (i == 0 && token[0] != '/')
-		{
-			cmd = malloc(_strlen("/bin/") + _strlen(token) + 1);
-			if (cmd == NULL)
-			{
-				perror("malloc error");
-				free(cmd);
-				exit(EXIT_FAILURE);
-			}
-			_strcpy(cmd, "/bin/");
-			_strcat(cmd, token);
-			words[i] = cmd;
-		}
-		else
-		{
-			words[i] = token;
-		}
-		i++;
-		token = strtok(NULL, " \n");
-	}
-
-	result = malloc((i + 1) * sizeof(char *));
-	if (result == NULL)
-	{
-		perror("malloc error");
-		exit(EXIT_FAILURE);
-	}
-
-	for (j = 0 ; j < i ; j++)
-	{
-		result[j] = words[j];
-	}
-	result[i] = NULL;
-
-	if (j == 0 && words[j][0] != '/')
-		free(cmd);
-
-	return (result);
-}
-
-char **split_path(char *thePath)
-{
-	char *tok;
-	char *array[MAX_ARGS];
-	char **res;
-	int i = 0;
-	int j;
-
-	tok = strtok(thePath, ":");
-	while (tok != NULL && i < MAX_ARGS)
-	{
-		array[i] = tok;
-		i++;
-		tok = strtok(NULL, ":");
-	}
-
-	res = malloc((i + 1) * sizeof(char *));
-	if (res == NULL)
-	{
-		perror("malloc error");
-		exit(EXIT_FAILURE);
-	}
-
-	for (j = 0 ; j < i ; j++)
-	{
-		res[j] = array[i];
-	}
-	res[i] = NULL;
-
-	return (res);
-}*/
