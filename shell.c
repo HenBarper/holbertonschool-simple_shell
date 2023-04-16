@@ -6,10 +6,12 @@ int check_path(char **path_array, char **token_array);
 
 /**
  * main - entry point
- *
+ * @argc: arg counter
+ * @argv: array of args
+ * @env: environment
  * Return: int
  */
-int main(void)
+int main(int argc, char **argv, char **env)
 {
 	char *input = NULL;
 	char *path = NULL;
@@ -18,7 +20,17 @@ int main(void)
 	char *patharr[20];
 	int ret_value = 0;
 
-	path = getenv("PATH");
+	(void)argc;
+	(void)argv;
+	while (*env)
+	{
+		if (strncmp(*env, "PATH=", 5) == 0)
+		{
+			path = (*env + 5);
+			break;
+		}
+		env++;
+	}
 	tokenize_string(path, ":", patharr);
 
 	while (1)
