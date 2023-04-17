@@ -8,23 +8,24 @@ This shell takes in simple Unix commands and inliments them in the shell one com
 ## Usage
 All the files are to be compiled on an Ubuntu 14.04 LTS machine with:
 
-<code> gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh </code>
+<code>gcc -Wall -Werror -Wextra -pedantic -std=gnu89 *.c -o hsh</code>
 
 Once compiled, to start the program, run:
 
-<code> $ ./hsh </code>
+<code>$ ./hsh</code>
 
 To exit the program, run:
 
-<code> BENRON $ exit </code>
+<code>BENRON $ exit</code>
 
 ## Built-Ins
 
 The following built-in is supported by BENRON Shell
 
-<code> env </code> -Prints the current working environment
+<code>env</code> -Prints the current working environment
 
 ## Return Value
 
+BENRON Shell will run with a return value of 0, or a 1 if command failed.
 
 ### List of Functions
