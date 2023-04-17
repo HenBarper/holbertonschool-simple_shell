@@ -1,9 +1,9 @@
 #include "main.h"
 
-void tokenize_string(char *str, char *delims, char **tokens);
+/*void tokenize_string(char *str, char *delims, char **tokens);
 int create_child(char *stdpath, char *call_path, char **str_arr);
 int check_path(char *stdpath, char **path_array, char **token_array);
-char *_strdup(char *str);
+char *_strdup(char *str);*/
 
 /**
  * main - entry point
