@@ -1,6 +1,6 @@
-.TH HSH 1 2023-04-18 LINUX
+.TH BENRON 1 2023-04-18 LINUX
 .SH NAME
-hsh \- Simple Shell
+hsh \- Simple Shell BENRON
 
 .SH SYNOPSIS
 .B hsh
