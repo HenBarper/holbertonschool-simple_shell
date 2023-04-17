@@ -1,9 +1,9 @@
 #include "main.h"
 
-/*void tokenize_string(char *str, char *delims, char **tokens);
+void tokenize_string(char *str, char *delims, char **tokens);
 int create_child(char *stdpath, char *call_path, char **str_arr);
 int check_path(char *stdpath, char **path_array, char **token_array);
-char *_strdup(char *str);*/
+char *_strdup(char *str);
 
 /**
  * main - entry point
@@ -41,6 +41,7 @@ int main(int argc, char **argv, char **env)
 		{
 			free(input);
 			free(path);
+			perror("Error");
 			exit(EXIT_SUCCESS);
 		}
 		tokenize_string(input, " \n\t", tokarr);
@@ -147,10 +148,14 @@ int create_child(char *stdpath, char *call_path, char **str_arr)
 	if (cop == 0)
 	{
 		if (execve(call_path, str_arr, NULL) == -1)
+		{
+			perror("Error");
 			exit(EXIT_FAILURE);
+		}
 	}
 	else if (cop < 0)
 	{
+		perror("Error");
 		exit(EXIT_FAILURE);
 	}
 	else
