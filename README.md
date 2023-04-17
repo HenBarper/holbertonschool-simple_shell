@@ -30,6 +30,7 @@ BENRON Shell will run with a return value of 0, or a 1 if command failed.
 
 ### List of Functions
 
+These functions make up the main file. Helper functions are not included.
 | Function | Description |
 | -------  | ------      |
 |tokenize_string |  tokenizes a string into an array of strings based on the delimiter provided |
