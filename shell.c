@@ -13,23 +13,21 @@ int check_path(char **path_array, char **token_array);
  */
 int main(int argc, char **argv, char **env)
 {
-	char *input = NULL;
-	char *path = NULL;
+	char *input = NULL, *path = NULL;
 	size_t size = 0;
-	char *tokarr[20];
-	char *patharr[20];
-	int ret_value = 0;
+	char *tokarr[20], *patharr[20];
+	int ret_value = 0, i = 1;
 
 	(void)argc;
 	(void)argv;
-	while (*env)
+	while (env[i] != NULL)
 	{
-		if (strncmp(*env, "PATH=", 5) == 0)
+		if (strncmp(env[i], "PATH=", 5) == 0)
 		{
-			path = (*env + 5);
+			path = (env[i] + 5);
 			break;
 		}
-		env++;
+		i++;
 	}
 	tokenize_string(path, ":", patharr);
 
@@ -44,12 +42,21 @@ int main(int argc, char **argv, char **env)
 		}
 		tokenize_string(input, " \n\t", tokarr);
 
-		if (!tokarr[0] || _strcmp(tokarr[0], "env") == 0)
+		if (!tokarr[0])
 			continue;
 		if (_strcmp(tokarr[0], "exit") == 0)
 		{
 			free(input);
 			exit(EXIT_SUCCESS);
+		}
+		if (_strcmp(tokarr[0], "env") == 0)
+		{
+			for (i = 0 ; env[i] != NULL ; i++)
+			{
+				write(STDOUT_FILENO, env[i], _strlen(env[i]));
+				write(STDOUT_FILENO, "\n", 1);
+			}
+			continue;
 		}
 
 		if (access(tokarr[0], X_OK) == 0)
