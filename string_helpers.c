@@ -7,10 +7,10 @@ int _strncmp(char *s1, char *s2, int n);
 int _strcmp(char *s1, char *s2);
 
 /**
- * *_strcat - meows 2 strings together
- * @dest: where big string goes and other smol string comes
- * @src: smol string input
- * Return: big string
+ * *_strcat - concats two strings together
+ * @dest: starting string
+ * @src: string to add
+ * Return: finished string
  */
 char *_strcat(char *dest, char *src)
 {
@@ -31,10 +31,10 @@ char *_strcat(char *dest, char *src)
 }
 
 /**
- * *_strcpy - function for to copy chararr
- * @src: source of chararr
- * @dest: destination of chararr
- * Return: finaldestination
+ * *_strcpy - copy a string
+ * @src: source
+ * @dest: destination
+ * Return: copied string
  */
 char *_strcpy(char *dest, char *src)
 {
@@ -50,8 +50,8 @@ char *_strcpy(char *dest, char *src)
 }
 
 /**
- * _strlen - function to find length of string
- * @s: string input
+ * _strlen - find length of string
+ * @s: string
  * Return: string length
  */
 int _strlen(char *s)
@@ -94,9 +94,9 @@ int _strncmp(char *s1, char *s2, int n)
 
 /**
  * _strcmp - compares strings ASCII values
- * @s1: first string
- * @s2: second string
- * Return: first dif
+ * @s1: string 1
+ * @s2: string 2
+ * Return: number of differences
  */
 int _strcmp(char *s1, char *s2)
 {

@@ -1,8 +1,9 @@
 #include "main.h"
 
 void tokenize_string(char *str, char *delims, char **tokens);
-int create_child(char *call_path, char **str_arr);
-int check_path(char **path_array, char **token_array);
+int create_child(char *stdpath, char *call_path, char **str_arr);
+int check_path(char *stdpath, char **path_array, char **token_array);
+char *_strdup(char *str);
 
 /**
  * main - entry point
@@ -16,37 +17,43 @@ int main(int argc, char **argv, char **env)
 	char *input = NULL, *path = NULL;
 	size_t size = 0;
 	char *tokarr[20], *patharr[20];
-	int ret_value = 0, i = 1;
+	int ret_value = 0, i;
 
 	(void)argc;
 	(void)argv;
-	while (env[i] != NULL)
-	{
-		if (strncmp(env[i], "PATH=", 5) == 0)
-		{
-			path = (env[i] + 5);
-			break;
-		}
-		i++;
-	}
-	tokenize_string(path, ":", patharr);
-
 	while (1)
 	{
+		i = 0;
+		while (env[i] != NULL)
+
+		{
+			if (_strncmp(env[i], "PATH=", 5) == 0)
+			{
+				path = _strdup((env[i] + 5));
+				break;
+			}
+			i++;
+		}
+		tokenize_string(path, ":", patharr);
 		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
+			write(STDOUT_FILENO, "BENRON $ ", 9);
 		if (getline(&input, &size, stdin) == -1)
 		{
 			free(input);
+			free(path);
 			exit(EXIT_SUCCESS);
 		}
 		tokenize_string(input, " \n\t", tokarr);
 
 		if (!tokarr[0])
+		{
+			free(path);
 			continue;
+		}
 		if (_strcmp(tokarr[0], "exit") == 0)
 		{
 			free(input);
+			free(path);
 			exit(EXIT_SUCCESS);
 		}
 		if (_strcmp(tokarr[0], "env") == 0)
@@ -56,13 +63,14 @@ int main(int argc, char **argv, char **env)
 				write(STDOUT_FILENO, env[i], _strlen(env[i]));
 				write(STDOUT_FILENO, "\n", 1);
 			}
+			free(path);
 			continue;
 		}
 
 		if (access(tokarr[0], X_OK) == 0)
-			create_child(tokarr[0], tokarr);
+			create_child(path, tokarr[0], tokarr);
 		else
-			ret_value = check_path(patharr, tokarr);
+			ret_value = check_path(path, patharr, tokarr);
 
 	}
 	return (ret_value);
@@ -96,7 +104,7 @@ void tokenize_string(char *str, char *delims, char **tokens)
  * @token_array: the string array of tokens
  * Return: int 127
  */
-int check_path(char **path_array, char **token_array)
+int check_path(char *stdpath, char **path_array, char **token_array)
 {
 	int i = 0;
 	char *comp_path = NULL;
@@ -110,7 +118,7 @@ int check_path(char **path_array, char **token_array)
 		_strcat(comp_path, token_array[0]);
 		if (stat(comp_path, &x) == 0)
 		{
-			create_child(comp_path, token_array);
+			create_child(stdpath, comp_path, token_array);
 			free(comp_path);
 			return (0);
 		}
@@ -126,12 +134,13 @@ int check_path(char **path_array, char **token_array)
  * @str_arr: array of string
  * Return: int
  */
-int create_child(char *call_path, char **str_arr)
+int create_child(char *stdpath, char *call_path, char **str_arr)
 {
 	pid_t cop;
 	pid_t sig;
 	int status = 0;
 
+	free(stdpath);
 	cop = fork();
 	if (cop == 0)
 	{
@@ -139,7 +148,9 @@ int create_child(char *call_path, char **str_arr)
 			exit(EXIT_FAILURE);
 	}
 	else if (cop < 0)
+	{
 		exit(EXIT_FAILURE);
+	}
 	else
 	{
 		do {
@@ -148,4 +159,40 @@ int create_child(char *call_path, char **str_arr)
 	}
 	(void) sig;
 	return (status);
+}
+
+/**
+ * *_strdup - ret ptr to newly allocated mem space
+ * @str: string
+ * Return: NULL or ptr to dupe string
+ */
+char *_strdup(char *str)
+{
+	int i = 0;
+	int n = 0;
+	char *ar;
+
+	if (str == NULL)
+	{
+		return (NULL);
+	}
+	while (str[i] != '\0')
+	{
+		i++;
+		n++;
+	}
+	n++;
+
+	ar = malloc(n * sizeof(char));
+	if (ar == NULL)
+	{
+		return (NULL);
+	}
+
+	for (i = 0 ; i < n ; i++)
+	{
+		ar[i] = str[i];
+	}
+
+	return (ar);
 }
