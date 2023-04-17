@@ -18,6 +18,13 @@ To exit the program, run:
 
 <code> BENRON $ exit </code>
 
+## Built-Ins
+
+The following built-in is supported by BENRON Shell
+
+<code> env </code> -Prints the current working environment
+
 ## Return Value
+
 
 ### List of Functions
