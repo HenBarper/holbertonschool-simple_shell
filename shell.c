@@ -100,6 +100,7 @@ void tokenize_string(char *str, char *delims, char **tokens)
 
 /**
  * check_path - check if the path leads to a system call
+ * @stdpath: the path variable to free
  * @path_array: the string array containing the paths
  * @token_array: the string array of tokens
  * Return: int 127
@@ -130,6 +131,7 @@ int check_path(char *stdpath, char **path_array, char **token_array)
 
 /**
  * create_child - function to create child process
+ * @stdpath: the path variable to free
  * @call_path: path of system call
  * @str_arr: array of string
  * Return: int
