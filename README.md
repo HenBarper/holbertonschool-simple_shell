@@ -32,6 +32,7 @@ BENRON Shell will run with a return value of 0, or a 1 if command failed.
 
 | Function | Description |
 | -------  | ------      |
-|tokenize_string |  tokenizes the path into their indivudual elements |
-| ------   | ----- |
+|tokenize_string |  tokenizes a string into an array of strings based on the delimiter provided |
+|check_path | checks all possible paths with the input and assigns the path |
+| create_child | creates a child process that executes the argument for the main process to wait on |
 
