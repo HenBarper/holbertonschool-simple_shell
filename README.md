@@ -4,7 +4,7 @@
 A recreation of a shell with a basic Unix command-line interpretor.
 
 ## Description
-This shell takes in simple Unix commands and inliments them in the shell one command at a time. After the command is typed the shell will execute the command and print the output to the terminal with a new commandline for another set of arguments.
+BENRON shell takes in simple Unix commands and inliments them in the shell one command at a time. After the command is typed the shell will execute the command and print the output to the terminal with a new commandline for another set of arguments.
 ## Usage
 All the files are to be compiled on an Ubuntu 14.04 LTS machine with:
 
@@ -29,3 +29,7 @@ The following built-in is supported by BENRON Shell
 BENRON Shell will run with a return value of 0, or a 1 if command failed.
 
 ### List of Functions
+
+| Function | Description |
+| ---      | ---         |
+| 
