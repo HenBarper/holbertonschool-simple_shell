@@ -31,5 +31,7 @@ BENRON Shell will run with a return value of 0, or a 1 if command failed.
 ### List of Functions
 
 | Function | Description |
-| ---      | ---         |
-| 
+| -------  | ------      |
+|tokenize_string |  tokenizes the path into their indivudual elements |
+| ------   | ----- |
+
